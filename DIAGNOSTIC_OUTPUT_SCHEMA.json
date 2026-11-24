@@ -1,0 +1,392 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ayaan-os.local/acca-performance-engine/diagnostic-output.schema.json",
+  "$comment": "Part of PROJECT.md in the ACCA Performance Engine project.",
+  "title": "ACCA Performance Engine diagnostic benchmark output",
+  "description": "Strict output contract for one blind diagnostic assessment. It is not an official ACCA mark.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "analysis_id",
+    "benchmark_case_id",
+    "generated_at",
+    "paper",
+    "question_requirement",
+    "marks_available",
+    "diagnostic_model",
+    "indicative_mark",
+    "diagnosis_summary",
+    "dimension_assessments",
+    "major_strengths",
+    "major_weaknesses",
+    "priority_weaknesses",
+    "technical_knowledge_gaps",
+    "exam_technique_gaps",
+    "recommended_improvement_actions",
+    "uncertainty"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "analysis_id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{2,127}$"},
+    "benchmark_case_id": {"type": "string", "pattern": "^ACCA-[A-Z0-9-]+-C[0-9]+$"},
+    "generated_at": {"type": "string", "format": "date-time"},
+    "paper": {
+      "enum": ["PM", "TX", "FR", "FM", "AA", "SBL", "SBR", "AFM", "APM", "AAA", "ATX"]
+    },
+    "question_requirement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["question_id", "requirement_ids", "assessment_scope", "mark_breakdown"],
+      "properties": {
+        "question_id": {"type": "string", "minLength": 1, "maxLength": 160},
+        "requirement_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1, "maxLength": 40}
+        },
+        "assessment_scope": {"enum": ["WHOLE_SCRIPT", "REQUIREMENT", "SUB_REQUIREMENT"]},
+        "mark_breakdown": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["requirement_id", "marks_available"],
+            "properties": {
+              "requirement_id": {"type": "string", "minLength": 1, "maxLength": 40},
+              "marks_available": {"type": "number", "minimum": 0}
+            }
+          }
+        }
+      }
+    },
+    "marks_available": {"type": "number", "exclusiveMinimum": 0},
+    "diagnostic_model": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["provider", "model", "reasoning", "prompt_version", "taxonomy_version", "paper_rules_version"],
+      "properties": {
+        "provider": {"type": "string", "minLength": 1, "maxLength": 120},
+        "model": {"type": "string", "minLength": 1, "maxLength": 160},
+        "reasoning": {"type": "string", "minLength": 1, "maxLength": 80},
+        "prompt_version": {"type": "string", "minLength": 1, "maxLength": 80},
+        "taxonomy_version": {"type": "string", "minLength": 1, "maxLength": 80},
+        "paper_rules_version": {"type": ["string", "null"], "maxLength": 80}
+      }
+    },
+    "indicative_mark": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value", "range", "confidence", "official_mark", "disclaimer"],
+      "properties": {
+        "value": {"type": ["number", "null"], "minimum": 0},
+        "range": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["low", "high"],
+          "properties": {
+            "low": {"type": ["number", "null"], "minimum": 0},
+            "high": {"type": ["number", "null"], "minimum": 0}
+          }
+        },
+        "confidence": {"enum": ["LOW", "MEDIUM", "HIGH", "NOT_ESTIMATED"]},
+        "official_mark": {"const": false},
+        "disclaimer": {"const": "Indicative AI estimate; not an official ACCA mark."}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"confidence": {"const": "NOT_ESTIMATED"}}},
+          "then": {
+            "properties": {
+              "value": {"type": "null"},
+              "range": {
+                "properties": {"low": {"type": "null"}, "high": {"type": "null"}}
+              }
+            }
+          }
+        }
+      ]
+    },
+    "diagnosis_summary": {"type": "string", "minLength": 1, "maxLength": 2000},
+    "dimension_assessments": {
+      "type": "array",
+      "minItems": 10,
+      "maxItems": 10,
+      "items": {"$ref": "#/$defs/dimensionAssessment"},
+      "allOf": [
+        {"contains": {"properties": {"dimension": {"const": "TECHNICAL_KNOWLEDGE"}}}, "minContains": 1, "maxContains": 1},
+        {"contains": {"properties": {"dimension": {"const": "REQUIREMENT_INTERPRETATION"}}}, "minContains": 1, "maxContains": 1},
+        {"contains": {"properties": {"dimension": {"const": "SCENARIO_APPLICATION"}}}, "minContains": 1, "maxContains": 1},
+        {"contains": {"properties": {"dimension": {"const": "ANALYSIS_DEVELOPMENT"}}}, "minContains": 1, "maxContains": 1},
+        {"contains": {"properties": {"dimension": {"const": "EVALUATION_JUDGEMENT"}}}, "minContains": 1, "maxContains": 1},
+        {"contains": {"properties": {"dimension": {"const": "QUANTITATIVE_ACCURACY"}}}, "minContains": 1, "maxContains": 1},
+        {"contains": {"properties": {"dimension": {"const": "QUANTITATIVE_INTERPRETATION"}}}, "minContains": 1, "maxContains": 1},
+        {"contains": {"properties": {"dimension": {"const": "PROFESSIONAL_SKILLS"}}}, "minContains": 1, "maxContains": 1},
+        {"contains": {"properties": {"dimension": {"const": "EXAM_EXECUTION"}}}, "minContains": 1, "maxContains": 1},
+        {"contains": {"properties": {"dimension": {"const": "CONCLUSION_RECOMMENDATION"}}}, "minContains": 1, "maxContains": 1}
+      ]
+    },
+    "major_strengths": {
+      "type": "array",
+      "maxItems": 12,
+      "items": {"$ref": "#/$defs/strengthFinding"}
+    },
+    "major_weaknesses": {
+      "type": "array",
+      "maxItems": 20,
+      "items": {"$ref": "#/$defs/weaknessFinding"}
+    },
+    "priority_weaknesses": {
+      "type": "array",
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["weakness_id", "priority_rank", "reason"],
+        "properties": {
+          "weakness_id": {"type": "string", "pattern": "^wk_[A-Za-z0-9_-]+$"},
+          "priority_rank": {"type": "integer", "minimum": 1, "maximum": 5},
+          "reason": {"type": "string", "minLength": 1, "maxLength": 800}
+        }
+      }
+    },
+    "technical_knowledge_gaps": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/gap"}
+    },
+    "exam_technique_gaps": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/gap"}
+    },
+    "recommended_improvement_actions": {
+      "type": "array",
+      "maxItems": 10,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["action_id", "priority", "related_weakness_ids", "action", "success_check"],
+        "properties": {
+          "action_id": {"type": "string", "pattern": "^act_[A-Za-z0-9_-]+$"},
+          "priority": {"type": "integer", "minimum": 1, "maximum": 10},
+          "related_weakness_ids": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {"type": "string", "pattern": "^wk_[A-Za-z0-9_-]+$"}
+          },
+          "action": {"type": "string", "minLength": 1, "maxLength": 1200},
+          "success_check": {"type": "string", "minLength": 1, "maxLength": 800}
+        }
+      }
+    },
+    "uncertainty": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["flags", "details", "insufficient_evidence_dimensions"],
+      "properties": {
+        "flags": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/uncertaintyFlag"}
+        },
+        "details": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1, "maxLength": 800}
+        },
+        "insufficient_evidence_dimensions": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/dimensionId"}
+        }
+      }
+    }
+  },
+  "$defs": {
+    "dimensionId": {
+      "enum": [
+        "TECHNICAL_KNOWLEDGE",
+        "REQUIREMENT_INTERPRETATION",
+        "SCENARIO_APPLICATION",
+        "ANALYSIS_DEVELOPMENT",
+        "EVALUATION_JUDGEMENT",
+        "QUANTITATIVE_ACCURACY",
+        "QUANTITATIVE_INTERPRETATION",
+        "PROFESSIONAL_SKILLS",
+        "EXAM_EXECUTION",
+        "CONCLUSION_RECOMMENDATION"
+      ]
+    },
+    "weaknessTag": {
+      "enum": [
+        "TECHNICAL_CONCEPT_INCORRECT",
+        "TECHNICAL_KNOWLEDGE_MISSING",
+        "TECHNICAL_RULE_MISAPPLIED",
+        "TECHNICAL_ASSUMPTION_UNSTATED",
+        "TECHNICAL_TERMINOLOGY_IMPRECISE",
+        "REQUIREMENT_MISREAD",
+        "REQUIREMENT_PARTIALLY_ANSWERED",
+        "REQUIREMENT_VERB_NOT_FOLLOWED",
+        "REQUIREMENT_SCOPE_IGNORED",
+        "REQUIRED_FORMAT_NOT_FOLLOWED",
+        "GENERIC_NOT_SCENARIO_SPECIFIC",
+        "SCENARIO_FACT_NOT_CONNECTED",
+        "SCENARIO_FACT_MISUSED",
+        "MATERIAL_SCENARIO_FACT_OMITTED",
+        "POINT_IDENTIFIED_NOT_DEVELOPED",
+        "CONSEQUENCE_NOT_EXPLAINED",
+        "CAUSAL_LINK_WEAK",
+        "ANALYSIS_DEPTH_LIMITED",
+        "EVALUATION_ONE_SIDED",
+        "ALTERNATIVES_NOT_WEIGHED",
+        "EVALUATION_CRITERIA_NOT_APPLIED",
+        "MATERIAL_ASSUMPTION_NOT_CHALLENGED",
+        "CALCULATION_METHOD_INCORRECT",
+        "CALCULATION_ERROR",
+        "CALCULATION_INPUT_INCORRECT",
+        "CALCULATION_WORKING_NOT_TRACEABLE",
+        "UNIT_OR_SIGN_ERROR",
+        "CALCULATION_NOT_INTERPRETED",
+        "RESULT_DIRECTION_MISINTERPRETED",
+        "MATERIALITY_NOT_ASSESSED",
+        "COMMERCIAL_IMPLICATION_MISSING",
+        "PROFESSIONAL_TONE_WEAK",
+        "COMMUNICATION_UNCLEAR",
+        "PROFESSIONAL_SCEPTICISM_MISSING",
+        "PROFESSIONAL_FORMAT_INEFFECTIVE",
+        "DATA_PRESENTATION_INEFFECTIVE",
+        "IRRELEVANT_CONTENT",
+        "REPETITION",
+        "POOR_MARK_ALLOCATION",
+        "ANSWER_STRUCTURE_WEAK",
+        "INCOMPLETE_RESPONSE",
+        "TIME_MANAGEMENT_CONCERN",
+        "CONCLUSION_MISSING",
+        "CONCLUSION_UNSUPPORTED",
+        "RECOMMENDATION_NOT_LINKED_TO_ANALYSIS",
+        "RECOMMENDATION_NOT_ACTIONABLE",
+        "RECOMMENDATION_IGNORES_CONSTRAINT"
+      ]
+    },
+    "strengthTag": {
+      "enum": [
+        "TECHNICAL_KNOWLEDGE_ACCURATE",
+        "REQUIREMENT_INTERPRETED_ACCURATELY",
+        "SCENARIO_APPLICATION_EFFECTIVE",
+        "ANALYSIS_WELL_DEVELOPED",
+        "TRADE_OFFS_WEIGHED",
+        "JUDGEMENT_PROPORTIONATE",
+        "CALCULATION_ACCURATE",
+        "QUANTITATIVE_INSIGHT_EFFECTIVE",
+        "PROFESSIONAL_COMMUNICATION_EFFECTIVE",
+        "PROFESSIONAL_SCEPTICISM_EFFECTIVE",
+        "EFFICIENT_EXAM_EXECUTION",
+        "CONCLUSION_WELL_SUPPORTED",
+        "RECOMMENDATION_ACTIONABLE"
+      ]
+    },
+    "uncertaintyFlag": {
+      "enum": [
+        "QUESTION_CONTEXT_INCOMPLETE",
+        "MARKING_CONTEXT_MISSING",
+        "STUDENT_ANSWER_INCOMPLETE",
+        "SOURCE_UNREADABLE",
+        "AMBIGUOUS_EVIDENCE",
+        "PAPER_RULES_UNAVAILABLE",
+        "INDICATIVE_MARK_UNSAFE",
+        "OUTSIDE_SUPPORTED_SCOPE"
+      ]
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["answer_location", "excerpt"],
+      "properties": {
+        "answer_location": {"type": "string", "minLength": 1, "maxLength": 300},
+        "excerpt": {"type": "string", "minLength": 1, "maxLength": 800}
+      }
+    },
+    "dimensionAssessment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "dimension",
+        "applicability",
+        "score",
+        "categorical_assessment",
+        "confidence",
+        "evidence",
+        "weakness_tags",
+        "strength_tags",
+        "rationale"
+      ],
+      "properties": {
+        "dimension": {"$ref": "#/$defs/dimensionId"},
+        "applicability": {"enum": ["APPLICABLE", "NOT_APPLICABLE", "INSUFFICIENT_EVIDENCE"]},
+        "score": {"type": ["integer", "null"], "minimum": 0, "maximum": 4},
+        "categorical_assessment": {"enum": ["FUNDAMENTAL_FAILURE", "WEAK", "MIXED", "GOOD", "STRONG", "NOT_ASSESSED"]},
+        "confidence": {"enum": ["LOW", "MEDIUM", "HIGH", "NOT_ASSESSED"]},
+        "evidence": {"type": "array", "items": {"$ref": "#/$defs/evidence"}},
+        "weakness_tags": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/weaknessTag"}},
+        "strength_tags": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/strengthTag"}},
+        "rationale": {"type": "string", "minLength": 1, "maxLength": 1200}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"applicability": {"const": "APPLICABLE"}}},
+          "then": {
+            "properties": {
+              "score": {"type": "integer"},
+              "categorical_assessment": {"not": {"const": "NOT_ASSESSED"}},
+              "confidence": {"enum": ["LOW", "MEDIUM", "HIGH"]}
+            }
+          },
+          "else": {
+            "properties": {
+              "score": {"type": "null"},
+              "categorical_assessment": {"const": "NOT_ASSESSED"},
+              "weakness_tags": {"maxItems": 0},
+              "strength_tags": {"maxItems": 0}
+            }
+          }
+        }
+      ]
+    },
+    "strengthFinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["strength_id", "dimension", "tag", "confidence", "evidence", "explanation"],
+      "properties": {
+        "strength_id": {"type": "string", "pattern": "^st_[A-Za-z0-9_-]+$"},
+        "dimension": {"$ref": "#/$defs/dimensionId"},
+        "tag": {"$ref": "#/$defs/strengthTag"},
+        "confidence": {"enum": ["LOW", "MEDIUM", "HIGH"]},
+        "evidence": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/evidence"}},
+        "explanation": {"type": "string", "minLength": 1, "maxLength": 1200}
+      }
+    },
+    "weaknessFinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["weakness_id", "dimension", "tag", "gap_class", "severity", "confidence", "evidence", "explanation"],
+      "properties": {
+        "weakness_id": {"type": "string", "pattern": "^wk_[A-Za-z0-9_-]+$"},
+        "dimension": {"$ref": "#/$defs/dimensionId"},
+        "tag": {"$ref": "#/$defs/weaknessTag"},
+        "gap_class": {"enum": ["TECHNICAL_KNOWLEDGE", "EXAM_TECHNIQUE", "MIXED"]},
+        "severity": {"enum": ["MINOR", "MODERATE", "MAJOR"]},
+        "confidence": {"enum": ["LOW", "MEDIUM", "HIGH"]},
+        "evidence": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/evidence"}},
+        "explanation": {"type": "string", "minLength": 1, "maxLength": 1200}
+      }
+    },
+    "gap": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["weakness_id", "description"],
+      "properties": {
+        "weakness_id": {"type": "string", "pattern": "^wk_[A-Za-z0-9_-]+$"},
+        "description": {"type": "string", "minLength": 1, "maxLength": 1000}
+      }
+    }
+  }
+}

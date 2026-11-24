@@ -1,0 +1,100 @@
+{
+  "_project_link": "../PROJECT.md",
+  "config_version": "credit-ledger-v0.2.0",
+  "finding_classifications": [
+    "STYLE_NOTE",
+    "DIAGNOSTIC_WEAKNESS",
+    "MARK_MATERIAL_WEAKNESS"
+  ],
+  "credit_statuses": [
+    "AWARDED",
+    "PARTIAL",
+    "NOT_AWARDED",
+    "INSUFFICIENT_EVIDENCE",
+    "UNAVAILABLE",
+    "NOT_APPLICABLE"
+  ],
+  "rule_statuses": [
+    "SUPPORTED_BY_EXISTING_PROJECT_EVIDENCE",
+    "UNVALIDATED",
+    "INSUFFICIENT_EVIDENCE"
+  ],
+  "deduplication_groups": [
+    {
+      "group_id": "SCENARIO_CONNECTION",
+      "status": "UNVALIDATED",
+      "tags": [
+        "GENERIC_NOT_SCENARIO_SPECIFIC",
+        "SCENARIO_FACT_NOT_CONNECTED",
+        "MATERIAL_SCENARIO_FACT_OMITTED"
+      ]
+    },
+    {
+      "group_id": "ANALYSIS_DEVELOPMENT",
+      "status": "UNVALIDATED",
+      "tags": [
+        "POINT_IDENTIFIED_NOT_DEVELOPED",
+        "CONSEQUENCE_NOT_EXPLAINED",
+        "CAUSAL_LINK_WEAK",
+        "ANALYSIS_DEPTH_LIMITED"
+      ]
+    },
+    {
+      "group_id": "EVALUATION_DEPTH",
+      "status": "UNVALIDATED",
+      "tags": [
+        "EVALUATION_ONE_SIDED",
+        "ALTERNATIVES_NOT_WEIGHED",
+        "EVALUATION_CRITERIA_NOT_APPLIED",
+        "MATERIAL_ASSUMPTION_NOT_CHALLENGED"
+      ]
+    },
+    {
+      "group_id": "REQUIREMENT_COVERAGE",
+      "status": "UNVALIDATED",
+      "tags": [
+        "REQUIREMENT_MISREAD",
+        "REQUIREMENT_PARTIALLY_ANSWERED",
+        "REQUIREMENT_VERB_NOT_FOLLOWED",
+        "REQUIREMENT_SCOPE_IGNORED"
+      ]
+    },
+    {
+      "group_id": "QUANTITATIVE_DECISION_CHAIN",
+      "status": "UNVALIDATED",
+      "tags": [
+        "CALCULATION_NOT_INTERPRETED",
+        "MATERIALITY_NOT_ASSESSED",
+        "COMMERCIAL_IMPLICATION_MISSING"
+      ]
+    },
+    {
+      "group_id": "CONCLUSION_SUPPORT",
+      "status": "UNVALIDATED",
+      "tags": [
+        "CONCLUSION_MISSING",
+        "CONCLUSION_UNSUPPORTED",
+        "RECOMMENDATION_NOT_LINKED_TO_ANALYSIS",
+        "RECOMMENDATION_NOT_ACTIONABLE",
+        "RECOMMENDATION_IGNORES_CONSTRAINT"
+      ]
+    }
+  ],
+  "uncertainty_policy": {
+    "blocking_flags": [
+      "SOURCE_UNREADABLE",
+      "OUTSIDE_SUPPORTED_SCOPE"
+    ],
+    "mark_only_flags": [
+      "MARKING_CONTEXT_MISSING",
+      "PAPER_RULES_UNAVAILABLE",
+      "INDICATIVE_MARK_UNSAFE"
+    ],
+    "confidence_cap_when_paper_rules_unavailable": "MEDIUM",
+    "broad_range_width_ratio": 0.2,
+    "refuse_range_width_ratio": 0.6,
+    "normal_scoring_rule_statuses": [
+      "SUPPORTED_BY_EXISTING_PROJECT_EVIDENCE"
+    ]
+  }
+}

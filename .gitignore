@@ -1,0 +1,23 @@
+node_modules/
+.next/
+.vinext/
+dist/
+out/
+.wrangler/
+.sites-runtime/
+.openai/
+.vercel/
+coverage/
+__pycache__/
+*.pyc
+.env
+.env.*
+!.env.example
+*.pem
+*.tsbuildinfo
+next-env.d.ts
+.DS_Store
+# Never publish exam material, candidate scripts or real student data.
+benchmark/
+local_material/
+public/vendor/tesseract/

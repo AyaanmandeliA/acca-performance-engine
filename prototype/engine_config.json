@@ -1,0 +1,229 @@
+{
+  "_project_link": "../PROJECT.md",
+  "config_version": "prototype-v0.1.0",
+  "weakness_engine_version": "weakness-engine-v0.1",
+  "recommendation_engine_version": "recommendation-engine-v0.1",
+  "confidence_weights": {
+    "LOW": 0.4,
+    "MEDIUM": 0.7,
+    "HIGH": 1.0
+  },
+  "severity_weights": {
+    "MINOR": 0.33,
+    "MODERATE": 0.67,
+    "MAJOR": 1.0
+  },
+  "recency_half_life_exposures": 5,
+  "windows": {
+    "short": 3,
+    "emerging": 4,
+    "pattern": 6,
+    "resolution": 4
+  },
+  "state_thresholds": {
+    "emerging": {
+      "minimum_hits": 2,
+      "minimum_distinct_attempts": 2,
+      "minimum_weighted_prevalence": 0.3
+    },
+    "recurring_standard": {
+      "minimum_hits": 3,
+      "minimum_distinct_attempts": 3,
+      "minimum_distinct_dates": 2,
+      "minimum_weighted_prevalence": 0.4
+    },
+    "recurring_accelerated": {
+      "minimum_major_high_hits": 2,
+      "minimum_distinct_attempts": 2,
+      "minimum_distinct_dates": 2,
+      "minimum_weighted_prevalence": 0.55
+    },
+    "improving": {
+      "minimum_newer_exposures": 3,
+      "minimum_prevalence_drop": 0.2,
+      "maximum_recent_hits": 1,
+      "minimum_recent_clean": 2
+    },
+    "potentially_resolved": {
+      "minimum_consecutive_clean": 4,
+      "minimum_distinct_questions": 2,
+      "minimum_distinct_dates": 2,
+      "maximum_recent_prevalence": 0.15
+    },
+    "regressing": {
+      "minimum_recent_hits": 2,
+      "minimum_prevalence_increase": 0.25,
+      "minimum_distinct_attempts": 2,
+      "stable_low_maximum_prevalence": 0.15
+    },
+    "inactive_observation": {
+      "minimum_consecutive_clean": 4
+    }
+  },
+  "priority": {
+    "weighted_prevalence_points": 35,
+    "recent_max_severity_points": 25,
+    "state_points": 15,
+    "exam_relevance_points": 15,
+    "breadth_points": 10,
+    "state_weights": {
+      "OBSERVED": 0.2,
+      "EMERGING": 0.6,
+      "RECURRING": 1.0,
+      "IMPROVING": 0.45,
+      "POTENTIALLY_RESOLVED": 0.1,
+      "REGRESSING": 1.0
+    },
+    "low_confidence_only_cap": 25,
+    "breadth_contexts_for_full_weight": 3,
+    "same_paper_exam_relevance": 0.7,
+    "current_topic_exam_relevance": 1.0
+  },
+  "context": {
+    "paper_rollup_minimum_hit_contexts": 2,
+    "inherently_general_tags": [
+      "REQUIREMENT_MISREAD",
+      "POOR_MARK_ALLOCATION"
+    ]
+  },
+  "recommendation": {
+    "maximum_targets": 3,
+    "broad_profile_priority_floor": 50,
+    "broad_profile_minimum_count": 3,
+    "broad_profile_minimum_contexts": 2,
+    "targeted_priority_share": 0.6,
+    "coverage_confidence_minimum": "MEDIUM",
+    "diversity_penalty_points": 2,
+    "scores": {
+      "weakness_coverage": 40,
+      "current_study_fit": 15,
+      "difficulty_fit": 10,
+      "length_fit": 10,
+      "attempt_strategy_fit": 10,
+      "recent_performance_fit": 10,
+      "transfer_or_mix_value": 5
+    },
+    "tag_match": {
+      "direct": 1.0,
+      "related": 0.5
+    },
+    "difficulty_order": [
+      "FOUNDATION",
+      "STANDARD",
+      "STRETCH"
+    ],
+    "mode_preferred_difficulty": {
+      "BASELINE": "STANDARD",
+      "TARGETED": "STANDARD",
+      "MIXED_CHALLENGE": "STANDARD",
+      "CONFIRM_IMPROVEMENT": "STRETCH",
+      "FOUNDATION_REPAIR": "FOUNDATION"
+    },
+    "attempt_scores": {
+      "new": 10,
+      "deliberate_retry": 8,
+      "previously_attempted": 2
+    }
+  },
+  "technical_dimensions": [
+    "TECHNICAL_KNOWLEDGE",
+    "QUANTITATIVE_ACCURACY"
+  ],
+  "tag_dimensions": {
+    "TECHNICAL_CONCEPT_INCORRECT": "TECHNICAL_KNOWLEDGE",
+    "TECHNICAL_KNOWLEDGE_MISSING": "TECHNICAL_KNOWLEDGE",
+    "TECHNICAL_RULE_MISAPPLIED": "TECHNICAL_KNOWLEDGE",
+    "TECHNICAL_ASSUMPTION_UNSTATED": "TECHNICAL_KNOWLEDGE",
+    "TECHNICAL_TERMINOLOGY_IMPRECISE": "TECHNICAL_KNOWLEDGE",
+    "REQUIREMENT_MISREAD": "REQUIREMENT_INTERPRETATION",
+    "REQUIREMENT_PARTIALLY_ANSWERED": "REQUIREMENT_INTERPRETATION",
+    "REQUIREMENT_VERB_NOT_FOLLOWED": "REQUIREMENT_INTERPRETATION",
+    "REQUIREMENT_SCOPE_IGNORED": "REQUIREMENT_INTERPRETATION",
+    "REQUIRED_FORMAT_NOT_FOLLOWED": "REQUIREMENT_INTERPRETATION",
+    "GENERIC_NOT_SCENARIO_SPECIFIC": "SCENARIO_APPLICATION",
+    "SCENARIO_FACT_NOT_CONNECTED": "SCENARIO_APPLICATION",
+    "SCENARIO_FACT_MISUSED": "SCENARIO_APPLICATION",
+    "MATERIAL_SCENARIO_FACT_OMITTED": "SCENARIO_APPLICATION",
+    "POINT_IDENTIFIED_NOT_DEVELOPED": "ANALYSIS_DEVELOPMENT",
+    "CONSEQUENCE_NOT_EXPLAINED": "ANALYSIS_DEVELOPMENT",
+    "CAUSAL_LINK_WEAK": "ANALYSIS_DEVELOPMENT",
+    "ANALYSIS_DEPTH_LIMITED": "ANALYSIS_DEVELOPMENT",
+    "EVALUATION_ONE_SIDED": "EVALUATION_JUDGEMENT",
+    "ALTERNATIVES_NOT_WEIGHED": "EVALUATION_JUDGEMENT",
+    "EVALUATION_CRITERIA_NOT_APPLIED": "EVALUATION_JUDGEMENT",
+    "MATERIAL_ASSUMPTION_NOT_CHALLENGED": "EVALUATION_JUDGEMENT",
+    "CALCULATION_METHOD_INCORRECT": "QUANTITATIVE_ACCURACY",
+    "CALCULATION_ERROR": "QUANTITATIVE_ACCURACY",
+    "CALCULATION_INPUT_INCORRECT": "QUANTITATIVE_ACCURACY",
+    "CALCULATION_WORKING_NOT_TRACEABLE": "QUANTITATIVE_ACCURACY",
+    "UNIT_OR_SIGN_ERROR": "QUANTITATIVE_ACCURACY",
+    "CALCULATION_NOT_INTERPRETED": "QUANTITATIVE_INTERPRETATION",
+    "RESULT_DIRECTION_MISINTERPRETED": "QUANTITATIVE_INTERPRETATION",
+    "MATERIALITY_NOT_ASSESSED": "QUANTITATIVE_INTERPRETATION",
+    "COMMERCIAL_IMPLICATION_MISSING": "QUANTITATIVE_INTERPRETATION",
+    "PROFESSIONAL_TONE_WEAK": "PROFESSIONAL_SKILLS",
+    "COMMUNICATION_UNCLEAR": "PROFESSIONAL_SKILLS",
+    "PROFESSIONAL_SCEPTICISM_MISSING": "PROFESSIONAL_SKILLS",
+    "PROFESSIONAL_FORMAT_INEFFECTIVE": "PROFESSIONAL_SKILLS",
+    "DATA_PRESENTATION_INEFFECTIVE": "PROFESSIONAL_SKILLS",
+    "IRRELEVANT_CONTENT": "EXAM_EXECUTION",
+    "REPETITION": "EXAM_EXECUTION",
+    "POOR_MARK_ALLOCATION": "EXAM_EXECUTION",
+    "ANSWER_STRUCTURE_WEAK": "EXAM_EXECUTION",
+    "INCOMPLETE_RESPONSE": "EXAM_EXECUTION",
+    "TIME_MANAGEMENT_CONCERN": "EXAM_EXECUTION",
+    "CONCLUSION_MISSING": "CONCLUSION_RECOMMENDATION",
+    "CONCLUSION_UNSUPPORTED": "CONCLUSION_RECOMMENDATION",
+    "RECOMMENDATION_NOT_LINKED_TO_ANALYSIS": "CONCLUSION_RECOMMENDATION",
+    "RECOMMENDATION_NOT_ACTIONABLE": "CONCLUSION_RECOMMENDATION",
+    "RECOMMENDATION_IGNORES_CONSTRAINT": "CONCLUSION_RECOMMENDATION"
+  },
+  "related_tag_groups": [
+    [
+      "CALCULATION_NOT_INTERPRETED",
+      "MATERIALITY_NOT_ASSESSED",
+      "COMMERCIAL_IMPLICATION_MISSING",
+      "RECOMMENDATION_NOT_LINKED_TO_ANALYSIS"
+    ],
+    [
+      "GENERIC_NOT_SCENARIO_SPECIFIC",
+      "SCENARIO_FACT_NOT_CONNECTED",
+      "MATERIAL_SCENARIO_FACT_OMITTED"
+    ],
+    [
+      "POINT_IDENTIFIED_NOT_DEVELOPED",
+      "CONSEQUENCE_NOT_EXPLAINED",
+      "ANALYSIS_DEPTH_LIMITED"
+    ],
+    [
+      "EVALUATION_ONE_SIDED",
+      "ALTERNATIVES_NOT_WEIGHED",
+      "EVALUATION_CRITERIA_NOT_APPLIED",
+      "MATERIAL_ASSUMPTION_NOT_CHALLENGED"
+    ],
+    [
+      "REQUIREMENT_MISREAD",
+      "REQUIREMENT_PARTIALLY_ANSWERED",
+      "REQUIREMENT_VERB_NOT_FOLLOWED",
+      "REQUIREMENT_SCOPE_IGNORED"
+    ],
+    [
+      "CONCLUSION_MISSING",
+      "CONCLUSION_UNSUPPORTED",
+      "RECOMMENDATION_NOT_LINKED_TO_ANALYSIS",
+      "RECOMMENDATION_NOT_ACTIONABLE",
+      "RECOMMENDATION_IGNORES_CONSTRAINT"
+    ]
+  ],
+  "tag_requirement_verbs": {
+    "REQUIREMENT_VERB_NOT_FOLLOWED": ["analyse", "assess", "evaluate", "recommend"],
+    "EVALUATION_ONE_SIDED": ["assess", "evaluate", "discuss"],
+    "ALTERNATIVES_NOT_WEIGHED": ["evaluate", "recommend"],
+    "EVALUATION_CRITERIA_NOT_APPLIED": ["assess", "evaluate", "recommend"],
+    "CALCULATION_NOT_INTERPRETED": ["assess", "evaluate", "interpret", "recommend"],
+    "COMMERCIAL_IMPLICATION_MISSING": ["assess", "evaluate", "recommend"],
+    "CONCLUSION_MISSING": ["conclude", "recommend"],
+    "CONCLUSION_UNSUPPORTED": ["conclude", "recommend"],
+    "RECOMMENDATION_NOT_LINKED_TO_ANALYSIS": ["advise", "recommend"]
+  }
+}

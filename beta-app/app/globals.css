@@ -1,0 +1,44 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "../vendor/shadcn-tailwind-4.13.0.css";
+
+:root {
+  --background: #f7f8f8; --foreground: #0e1d2f;
+  --card: #ffffff; --card-foreground: #0e1d2f;
+  --popover: #ffffff; --popover-foreground: #0e1d2f;
+  --primary: #153b63; --primary-foreground: #ffffff;
+  --secondary: #e8eef3; --secondary-foreground: #153b63;
+  --muted: #edf0f2; --muted-foreground: #5d6a76;
+  --accent: #e9a23b; --accent-foreground: #744007;
+  --destructive: #b42318; --border: #d9e0e5;
+  --input: #cdd6dc; --ring: #25639a;
+  --chart-1: #153b63; --chart-2: #e9a23b; --chart-3: #4b7f78; --chart-4: #8f6b4e; --chart-5: #6483a0;
+  --radius: 0.75rem;
+}
+
+@theme inline {
+  --color-background: var(--background); --color-foreground: var(--foreground);
+  --color-card: var(--card); --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover); --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary); --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary); --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted); --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent); --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive); --color-border: var(--border);
+  --color-input: var(--input); --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1); --color-chart-2: var(--chart-2); --color-chart-3: var(--chart-3); --color-chart-4: var(--chart-4); --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px); --radius-md: calc(var(--radius) - 2px); --radius-lg: var(--radius); --radius-xl: calc(var(--radius) + 6px);
+  --font-sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-serif: ui-serif, "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+}
+
+* { border-color: var(--border); }
+html { scroll-behavior: smooth; }
+body { background: var(--background); color: var(--foreground); font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable", "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+button, a, input, textarea, select { outline-offset: 3px; }
+::selection { background: #f6cf91; color: #0e1d2f; }
+.report-sheet::before { content: ""; position: absolute; inset: 0 0 auto; height: 5px; background: linear-gradient(90deg, #153b63 0 70%, #e9a23b 70%); }
+.eyebrow { font-size: .7rem; line-height: 1rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--muted-foreground); }
+.page-title { margin-top: .75rem; max-width: 48rem; font-family: ui-serif, "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif; font-size: clamp(2.6rem, 6vw, 5rem); line-height: 1; letter-spacing: -.045em; }
+.page-lede { margin-top: 1.25rem; max-width: 42rem; font-size: 1.05rem; line-height: 1.8rem; color: var(--muted-foreground); }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; animation: none !important; } }

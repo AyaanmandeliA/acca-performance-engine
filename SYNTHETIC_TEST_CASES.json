@@ -1,0 +1,778 @@
+{
+  "_project_link": "[PROJECT.md](PROJECT.md)",
+  "fixture_version": "1.0.0",
+  "taxonomy_version": "diagnostic-taxonomy-v0.1",
+  "weakness_engine_version": "weakness-engine-v0.1",
+  "recommendation_engine_version": "recommendation-engine-v0.1",
+  "purpose": "Fictional structured diagnoses for testing downstream weakness, trend, and recommendation logic. These fixtures do not test whether an AI can mark ACCA answers accurately.",
+  "fixture_conventions": {
+    "expected_state_scope": "PAPER_ROLLUP unless a test states otherwise",
+    "default_dimension_confidence": "HIGH unless an attempt states otherwise",
+    "clean_exposure": "A relevant dimension score of 3 or 4 with no weakness in that tag family and no uncertainty flag",
+    "attempt_history_keys": "Historical question keys are fictional and are separate from the candidate catalogue keys",
+    "available_question_keys": "Every listed candidate is treated as active, metadata-verified, unattempted, and lawfully accessible for that fictional profile unless an individual test states otherwise"
+  },
+  "confidence_weights": {
+    "LOW": 0.4,
+    "MEDIUM": 0.7,
+    "HIGH": 1.0
+  },
+  "severity_weights": {
+    "MINOR": 0.33,
+    "MODERATE": 0.67,
+    "MAJOR": 1.0
+  },
+  "synthetic_question_catalogue": [
+    {
+      "question_key": "synthetic|SBL|SCENARIO|01",
+      "paper": "SBL",
+      "topic": "Strategy",
+      "subtopics": ["Strategic position"],
+      "question_types": ["REPORT"],
+      "marks": 12,
+      "estimated_completion_minutes": 24,
+      "difficulty": "STANDARD",
+      "diagnostic_tags_tested": ["GENERIC_NOT_SCENARIO_SPECIFIC", "SCENARIO_FACT_NOT_CONNECTED", "ANALYSIS_DEPTH_LIMITED"],
+      "prerequisites": [],
+      "coverage_confidence": "HIGH",
+      "content_stored": false
+    },
+    {
+      "question_key": "synthetic|SBL|REQUIREMENT|02",
+      "paper": "SBL",
+      "topic": "Governance",
+      "subtopics": ["Board effectiveness"],
+      "question_types": ["BOARD_MEMO"],
+      "marks": 16,
+      "estimated_completion_minutes": 31,
+      "difficulty": "STANDARD",
+      "diagnostic_tags_tested": ["REQUIREMENT_MISREAD", "REQUIREMENT_PARTIALLY_ANSWERED", "REQUIREMENT_VERB_NOT_FOLLOWED", "REQUIRED_FORMAT_NOT_FOLLOWED"],
+      "prerequisites": [],
+      "coverage_confidence": "HIGH",
+      "content_stored": false
+    },
+    {
+      "question_key": "synthetic|SBL|TRANSFER|03",
+      "paper": "SBL",
+      "topic": "Change management",
+      "subtopics": ["Stakeholder response"],
+      "question_types": ["BRIEFING_NOTE"],
+      "marks": 20,
+      "estimated_completion_minutes": 39,
+      "difficulty": "STRETCH",
+      "diagnostic_tags_tested": ["GENERIC_NOT_SCENARIO_SPECIFIC", "SCENARIO_FACT_NOT_CONNECTED", "EVALUATION_ONE_SIDED"],
+      "prerequisites": [],
+      "coverage_confidence": "HIGH",
+      "content_stored": false
+    },
+    {
+      "question_key": "synthetic|SBR|TECHNICAL|01",
+      "paper": "SBR",
+      "topic": "Financial reporting",
+      "subtopics": ["Recognition and measurement"],
+      "question_types": ["TECHNICAL_EXPLANATION"],
+      "marks": 15,
+      "estimated_completion_minutes": 29,
+      "difficulty": "FOUNDATION",
+      "diagnostic_tags_tested": ["TECHNICAL_CONCEPT_INCORRECT", "TECHNICAL_KNOWLEDGE_MISSING", "TECHNICAL_RULE_MISAPPLIED"],
+      "prerequisites": [],
+      "coverage_confidence": "HIGH",
+      "content_stored": false
+    },
+    {
+      "question_key": "synthetic|SBR|INTEGRATED|02",
+      "paper": "SBR",
+      "topic": "Financial reporting",
+      "subtopics": ["Integrated reporting issues"],
+      "question_types": ["CASE_ANALYSIS"],
+      "marks": 25,
+      "estimated_completion_minutes": 49,
+      "difficulty": "STRETCH",
+      "diagnostic_tags_tested": ["TECHNICAL_RULE_MISAPPLIED", "SCENARIO_FACT_MISUSED", "ANALYSIS_DEPTH_LIMITED"],
+      "prerequisites": ["REPORTING_TREATMENT_FOUNDATIONS"],
+      "coverage_confidence": "HIGH",
+      "content_stored": false
+    },
+    {
+      "question_key": "synthetic|AFM|INTERPRETATION|01",
+      "paper": "AFM",
+      "topic": "Investment appraisal",
+      "subtopics": ["NPV and sensitivity"],
+      "question_types": ["CALCULATION_PLUS_DISCUSSION"],
+      "marks": 18,
+      "estimated_completion_minutes": 35,
+      "difficulty": "STANDARD",
+      "diagnostic_tags_tested": ["CALCULATION_NOT_INTERPRETED", "MATERIALITY_NOT_ASSESSED", "COMMERCIAL_IMPLICATION_MISSING", "RECOMMENDATION_NOT_LINKED_TO_ANALYSIS"],
+      "prerequisites": ["NPV_FOUNDATIONS"],
+      "coverage_confidence": "HIGH",
+      "content_stored": false
+    },
+    {
+      "question_key": "synthetic|AFM|CALCULATION|02",
+      "paper": "AFM",
+      "topic": "Business valuation",
+      "subtopics": ["Cash-flow valuation"],
+      "question_types": ["CALCULATION"],
+      "marks": 10,
+      "estimated_completion_minutes": 20,
+      "difficulty": "FOUNDATION",
+      "diagnostic_tags_tested": ["CALCULATION_METHOD_INCORRECT", "CALCULATION_ERROR", "CALCULATION_INPUT_INCORRECT", "UNIT_OR_SIGN_ERROR"],
+      "prerequisites": [],
+      "coverage_confidence": "HIGH",
+      "content_stored": false
+    },
+    {
+      "question_key": "synthetic|AFM|TRANSFER|03",
+      "paper": "AFM",
+      "topic": "Risk management",
+      "subtopics": ["Interest rate hedging"],
+      "question_types": ["CALCULATION_PLUS_DISCUSSION"],
+      "marks": 25,
+      "estimated_completion_minutes": 49,
+      "difficulty": "STRETCH",
+      "diagnostic_tags_tested": ["CALCULATION_NOT_INTERPRETED", "ALTERNATIVES_NOT_WEIGHED", "COMMERCIAL_IMPLICATION_MISSING", "RECOMMENDATION_NOT_LINKED_TO_ANALYSIS"],
+      "prerequisites": ["HEDGING_FOUNDATIONS"],
+      "coverage_confidence": "HIGH",
+      "content_stored": false
+    },
+    {
+      "question_key": "synthetic|AAA|EVALUATION|01",
+      "paper": "AAA",
+      "topic": "Audit planning",
+      "subtopics": ["Risk and evidence"],
+      "question_types": ["AUDIT_BRIEFING"],
+      "marks": 20,
+      "estimated_completion_minutes": 39,
+      "difficulty": "STANDARD",
+      "diagnostic_tags_tested": ["EVALUATION_ONE_SIDED", "MATERIAL_ASSUMPTION_NOT_CHALLENGED", "PROFESSIONAL_SCEPTICISM_MISSING"],
+      "prerequisites": ["AUDIT_RISK_FOUNDATIONS"],
+      "coverage_confidence": "HIGH",
+      "content_stored": false
+    },
+    {
+      "question_key": "synthetic|APM|CONCLUSION|01",
+      "paper": "APM",
+      "topic": "Performance evaluation",
+      "subtopics": ["Divisional performance"],
+      "question_types": ["ADVISORY_REPORT"],
+      "marks": 15,
+      "estimated_completion_minutes": 29,
+      "difficulty": "STANDARD",
+      "diagnostic_tags_tested": ["CONCLUSION_UNSUPPORTED", "RECOMMENDATION_NOT_LINKED_TO_ANALYSIS", "RECOMMENDATION_NOT_ACTIONABLE"],
+      "prerequisites": [],
+      "coverage_confidence": "HIGH",
+      "content_stored": false
+    },
+    {
+      "question_key": "synthetic|APM|EXECUTION|02",
+      "paper": "APM",
+      "topic": "Performance management",
+      "subtopics": ["Integrated case"],
+      "question_types": ["TIMED_MULTI_REQUIREMENT"],
+      "marks": 30,
+      "estimated_completion_minutes": 59,
+      "difficulty": "STANDARD",
+      "diagnostic_tags_tested": ["POOR_MARK_ALLOCATION", "REPETITION", "ANSWER_STRUCTURE_WEAK", "INCOMPLETE_RESPONSE", "TIME_MANAGEMENT_CONCERN"],
+      "prerequisites": [],
+      "coverage_confidence": "HIGH",
+      "content_stored": false
+    }
+  ],
+  "profiles": [
+    {
+      "profile_id": "P01_STRONG_KNOWLEDGE_WEAK_APPLICATION",
+      "paper": "SBL",
+      "description": "Strong technical knowledge but repeated generic answers with weak use of scenario facts.",
+      "current_study_context": {"topic": "Strategy", "available_minutes": 30},
+      "available_question_keys": ["synthetic|SBL|SCENARIO|01", "synthetic|SBL|REQUIREMENT|02", "synthetic|SBL|TRANSFER|03"],
+      "attempts": [
+        {
+          "analysis_id": "P01_A1",
+          "attempted_at": "2026-08-01T10:00:00Z",
+          "question_key": "hist|SBL|strategy|01",
+          "topic": "Strategy",
+          "question_type": "REPORT",
+          "dimension_scores": {"TECHNICAL_KNOWLEDGE": 4, "SCENARIO_APPLICATION": 1},
+          "strength_tags": ["TECHNICAL_KNOWLEDGE_ACCURATE"],
+          "weaknesses": [{"tag": "GENERIC_NOT_SCENARIO_SPECIFIC", "severity": "MODERATE", "confidence": "HIGH"}]
+        },
+        {
+          "analysis_id": "P01_A2",
+          "attempted_at": "2026-08-10T10:00:00Z",
+          "question_key": "hist|SBL|risk|02",
+          "topic": "Risk",
+          "question_type": "BRIEFING_NOTE",
+          "dimension_scores": {"TECHNICAL_KNOWLEDGE": 3, "SCENARIO_APPLICATION": 2},
+          "strength_tags": ["TECHNICAL_KNOWLEDGE_ACCURATE"],
+          "weaknesses": [{"tag": "GENERIC_NOT_SCENARIO_SPECIFIC", "severity": "MODERATE", "confidence": "HIGH"}, {"tag": "SCENARIO_FACT_NOT_CONNECTED", "severity": "MINOR", "confidence": "MEDIUM"}]
+        },
+        {
+          "analysis_id": "P01_A3",
+          "attempted_at": "2026-08-20T10:00:00Z",
+          "question_key": "hist|SBL|governance|03",
+          "topic": "Governance",
+          "question_type": "BOARD_MEMO",
+          "dimension_scores": {"TECHNICAL_KNOWLEDGE": 4, "SCENARIO_APPLICATION": 1},
+          "strength_tags": ["TECHNICAL_KNOWLEDGE_ACCURATE"],
+          "weaknesses": [{"tag": "GENERIC_NOT_SCENARIO_SPECIFIC", "severity": "MAJOR", "confidence": "HIGH"}]
+        },
+        {
+          "analysis_id": "P01_A4",
+          "attempted_at": "2026-09-01T10:00:00Z",
+          "question_key": "hist|SBL|change|04",
+          "topic": "Change management",
+          "question_type": "REPORT",
+          "dimension_scores": {"TECHNICAL_KNOWLEDGE": 3, "SCENARIO_APPLICATION": 2},
+          "strength_tags": ["TECHNICAL_KNOWLEDGE_ACCURATE"],
+          "weaknesses": [{"tag": "GENERIC_NOT_SCENARIO_SPECIFIC", "severity": "MODERATE", "confidence": "HIGH"}]
+        }
+      ],
+      "expected": {
+        "states": {"GENERIC_NOT_SCENARIO_SPECIFIC": "RECURRING", "SCENARIO_FACT_NOT_CONNECTED": "OBSERVED"},
+        "must_preserve_strength": "TECHNICAL_KNOWLEDGE_ACCURATE",
+        "recommendation_mode": "TARGETED",
+        "preferred_question_key": "synthetic|SBL|SCENARIO|01",
+        "must_not_infer": ["TECHNICAL_KNOWLEDGE_MISSING"]
+      }
+    },
+    {
+      "profile_id": "P02_WEAK_TECHNICAL_KNOWLEDGE",
+      "paper": "SBR",
+      "description": "Repeated technical misunderstandings should trigger foundation repair before a stretch integrated case.",
+      "current_study_context": {"topic": "Financial reporting", "available_minutes": 35},
+      "available_question_keys": ["synthetic|SBR|TECHNICAL|01", "synthetic|SBR|INTEGRATED|02"],
+      "attempts": [
+        {
+          "analysis_id": "P02_A1",
+          "attempted_at": "2026-08-02T10:00:00Z",
+          "question_key": "hist|SBR|reporting|01",
+          "topic": "Financial reporting",
+          "question_type": "TECHNICAL_EXPLANATION",
+          "dimension_scores": {"TECHNICAL_KNOWLEDGE": 1, "SCENARIO_APPLICATION": 2},
+          "strength_tags": [],
+          "weaknesses": [{"tag": "TECHNICAL_CONCEPT_INCORRECT", "severity": "MAJOR", "confidence": "HIGH"}]
+        },
+        {
+          "analysis_id": "P02_A2",
+          "attempted_at": "2026-08-12T10:00:00Z",
+          "question_key": "hist|SBR|reporting|02",
+          "topic": "Financial reporting",
+          "question_type": "CASE_ANALYSIS",
+          "dimension_scores": {"TECHNICAL_KNOWLEDGE": 1, "SCENARIO_APPLICATION": 2},
+          "strength_tags": [],
+          "weaknesses": [{"tag": "TECHNICAL_CONCEPT_INCORRECT", "severity": "MAJOR", "confidence": "HIGH"}, {"tag": "TECHNICAL_KNOWLEDGE_MISSING", "severity": "MODERATE", "confidence": "MEDIUM"}]
+        },
+        {
+          "analysis_id": "P02_A3",
+          "attempted_at": "2026-08-24T10:00:00Z",
+          "question_key": "hist|SBR|reporting|03",
+          "topic": "Financial reporting",
+          "question_type": "TECHNICAL_EXPLANATION",
+          "dimension_scores": {"TECHNICAL_KNOWLEDGE": 2, "SCENARIO_APPLICATION": 3},
+          "strength_tags": ["SCENARIO_APPLICATION_EFFECTIVE"],
+          "weaknesses": [{"tag": "TECHNICAL_CONCEPT_INCORRECT", "severity": "MODERATE", "confidence": "HIGH"}]
+        }
+      ],
+      "expected": {
+        "states": {"TECHNICAL_CONCEPT_INCORRECT": "RECURRING", "TECHNICAL_KNOWLEDGE_MISSING": "OBSERVED"},
+        "recommendation_mode": "FOUNDATION_REPAIR",
+        "preferred_question_key": "synthetic|SBR|TECHNICAL|01",
+        "must_not_recommend_first": "synthetic|SBR|INTEGRATED|02"
+      }
+    },
+    {
+      "profile_id": "P03_STRONG_CALCULATIONS_WEAK_INTERPRETATION",
+      "paper": "AFM",
+      "description": "Accurate calculations coexist with recurring failure to explain commercial meaning.",
+      "current_study_context": {"topic": "Investment appraisal", "available_minutes": 40},
+      "available_question_keys": ["synthetic|AFM|INTERPRETATION|01", "synthetic|AFM|CALCULATION|02", "synthetic|AFM|TRANSFER|03"],
+      "attempts": [
+        {
+          "analysis_id": "P03_A1",
+          "attempted_at": "2026-08-03T10:00:00Z",
+          "question_key": "hist|AFM|npv|01",
+          "topic": "Investment appraisal",
+          "question_type": "CALCULATION_PLUS_DISCUSSION",
+          "dimension_scores": {"QUANTITATIVE_ACCURACY": 4, "QUANTITATIVE_INTERPRETATION": 1},
+          "strength_tags": ["CALCULATION_ACCURATE"],
+          "weaknesses": [{"tag": "CALCULATION_NOT_INTERPRETED", "severity": "MAJOR", "confidence": "HIGH"}]
+        },
+        {
+          "analysis_id": "P03_A2",
+          "attempted_at": "2026-08-13T10:00:00Z",
+          "question_key": "hist|AFM|valuation|02",
+          "topic": "Business valuation",
+          "question_type": "CALCULATION_PLUS_DISCUSSION",
+          "dimension_scores": {"QUANTITATIVE_ACCURACY": 3, "QUANTITATIVE_INTERPRETATION": 1},
+          "strength_tags": ["CALCULATION_ACCURATE"],
+          "weaknesses": [{"tag": "CALCULATION_NOT_INTERPRETED", "severity": "MODERATE", "confidence": "HIGH"}, {"tag": "COMMERCIAL_IMPLICATION_MISSING", "severity": "MODERATE", "confidence": "HIGH"}]
+        },
+        {
+          "analysis_id": "P03_A3",
+          "attempted_at": "2026-08-23T10:00:00Z",
+          "question_key": "hist|AFM|hedging|03",
+          "topic": "Risk management",
+          "question_type": "CALCULATION_PLUS_DISCUSSION",
+          "dimension_scores": {"QUANTITATIVE_ACCURACY": 4, "QUANTITATIVE_INTERPRETATION": 2},
+          "strength_tags": ["CALCULATION_ACCURATE"],
+          "weaknesses": [{"tag": "CALCULATION_NOT_INTERPRETED", "severity": "MODERATE", "confidence": "HIGH"}, {"tag": "COMMERCIAL_IMPLICATION_MISSING", "severity": "MODERATE", "confidence": "MEDIUM"}]
+        },
+        {
+          "analysis_id": "P03_A4",
+          "attempted_at": "2026-09-03T10:00:00Z",
+          "question_key": "hist|AFM|npv|04",
+          "topic": "Investment appraisal",
+          "question_type": "CALCULATION_PLUS_DISCUSSION",
+          "dimension_scores": {"QUANTITATIVE_ACCURACY": 4, "QUANTITATIVE_INTERPRETATION": 1},
+          "strength_tags": ["CALCULATION_ACCURATE"],
+          "weaknesses": [{"tag": "CALCULATION_NOT_INTERPRETED", "severity": "MODERATE", "confidence": "HIGH"}]
+        }
+      ],
+      "expected": {
+        "states": {"CALCULATION_NOT_INTERPRETED": "RECURRING", "COMMERCIAL_IMPLICATION_MISSING": "EMERGING"},
+        "must_preserve_strength": "CALCULATION_ACCURATE",
+        "recommendation_mode": "TARGETED",
+        "preferred_question_key": "synthetic|AFM|INTERPRETATION|01",
+        "must_not_recommend_first": "synthetic|AFM|CALCULATION|02"
+      }
+    },
+    {
+      "profile_id": "P04_WEAK_EVALUATION",
+      "paper": "AAA",
+      "description": "Repeated one-sided evaluation and missing scepticism across audit scenarios.",
+      "current_study_context": {"topic": "Audit planning", "available_minutes": 45},
+      "available_question_keys": ["synthetic|AAA|EVALUATION|01"],
+      "attempts": [
+        {
+          "analysis_id": "P04_A1",
+          "attempted_at": "2026-08-04T10:00:00Z",
+          "question_key": "hist|AAA|risk|01",
+          "topic": "Audit planning",
+          "question_type": "AUDIT_BRIEFING",
+          "dimension_scores": {"EVALUATION_JUDGEMENT": 1, "PROFESSIONAL_SKILLS": 1},
+          "strength_tags": [],
+          "weaknesses": [{"tag": "EVALUATION_ONE_SIDED", "severity": "MODERATE", "confidence": "HIGH"}, {"tag": "PROFESSIONAL_SCEPTICISM_MISSING", "severity": "MODERATE", "confidence": "HIGH"}]
+        },
+        {
+          "analysis_id": "P04_A2",
+          "attempted_at": "2026-08-14T10:00:00Z",
+          "question_key": "hist|AAA|evidence|02",
+          "topic": "Audit evidence",
+          "question_type": "AUDIT_MEMO",
+          "dimension_scores": {"EVALUATION_JUDGEMENT": 1, "PROFESSIONAL_SKILLS": 2},
+          "strength_tags": [],
+          "weaknesses": [{"tag": "EVALUATION_ONE_SIDED", "severity": "MODERATE", "confidence": "HIGH"}, {"tag": "MATERIAL_ASSUMPTION_NOT_CHALLENGED", "severity": "MAJOR", "confidence": "MEDIUM"}]
+        },
+        {
+          "analysis_id": "P04_A3",
+          "attempted_at": "2026-08-25T10:00:00Z",
+          "question_key": "hist|AAA|reporting|03",
+          "topic": "Reporting",
+          "question_type": "AUDIT_BRIEFING",
+          "dimension_scores": {"EVALUATION_JUDGEMENT": 2, "PROFESSIONAL_SKILLS": 1},
+          "strength_tags": [],
+          "weaknesses": [{"tag": "EVALUATION_ONE_SIDED", "severity": "MODERATE", "confidence": "HIGH"}, {"tag": "PROFESSIONAL_SCEPTICISM_MISSING", "severity": "MODERATE", "confidence": "HIGH"}]
+        }
+      ],
+      "expected": {
+        "states": {"EVALUATION_ONE_SIDED": "RECURRING", "PROFESSIONAL_SCEPTICISM_MISSING": "EMERGING", "MATERIAL_ASSUMPTION_NOT_CHALLENGED": "OBSERVED"},
+        "recommendation_mode": "TARGETED",
+        "preferred_question_key": "synthetic|AAA|EVALUATION|01"
+      }
+    },
+    {
+      "profile_id": "P05_UNSUPPORTED_CONCLUSIONS",
+      "paper": "APM",
+      "description": "Student analyses several points but repeatedly reaches conclusions not supported by that analysis.",
+      "current_study_context": {"topic": "Performance evaluation", "available_minutes": 35},
+      "available_question_keys": ["synthetic|APM|CONCLUSION|01", "synthetic|APM|EXECUTION|02"],
+      "attempts": [
+        {
+          "analysis_id": "P05_A1",
+          "attempted_at": "2026-08-05T10:00:00Z",
+          "question_key": "hist|APM|division|01",
+          "topic": "Performance evaluation",
+          "question_type": "ADVISORY_REPORT",
+          "dimension_scores": {"ANALYSIS_DEVELOPMENT": 3, "CONCLUSION_RECOMMENDATION": 1},
+          "strength_tags": ["ANALYSIS_WELL_DEVELOPED"],
+          "weaknesses": [{"tag": "CONCLUSION_UNSUPPORTED", "severity": "MAJOR", "confidence": "HIGH"}]
+        },
+        {
+          "analysis_id": "P05_A2",
+          "attempted_at": "2026-08-15T10:00:00Z",
+          "question_key": "hist|APM|metrics|02",
+          "topic": "Performance measurement",
+          "question_type": "ADVISORY_REPORT",
+          "dimension_scores": {"ANALYSIS_DEVELOPMENT": 3, "CONCLUSION_RECOMMENDATION": 2},
+          "strength_tags": ["ANALYSIS_WELL_DEVELOPED"],
+          "weaknesses": [{"tag": "CONCLUSION_UNSUPPORTED", "severity": "MODERATE", "confidence": "HIGH"}, {"tag": "RECOMMENDATION_NOT_LINKED_TO_ANALYSIS", "severity": "MODERATE", "confidence": "HIGH"}]
+        },
+        {
+          "analysis_id": "P05_A3",
+          "attempted_at": "2026-08-26T10:00:00Z",
+          "question_key": "hist|APM|behaviour|03",
+          "topic": "Behavioural aspects",
+          "question_type": "ADVISORY_REPORT",
+          "dimension_scores": {"ANALYSIS_DEVELOPMENT": 3, "CONCLUSION_RECOMMENDATION": 1},
+          "strength_tags": ["ANALYSIS_WELL_DEVELOPED"],
+          "weaknesses": [{"tag": "CONCLUSION_UNSUPPORTED", "severity": "MODERATE", "confidence": "HIGH"}, {"tag": "RECOMMENDATION_NOT_LINKED_TO_ANALYSIS", "severity": "MODERATE", "confidence": "MEDIUM"}]
+        }
+      ],
+      "expected": {
+        "states": {"CONCLUSION_UNSUPPORTED": "RECURRING", "RECOMMENDATION_NOT_LINKED_TO_ANALYSIS": "EMERGING"},
+        "must_preserve_strength": "ANALYSIS_WELL_DEVELOPED",
+        "recommendation_mode": "TARGETED",
+        "preferred_question_key": "synthetic|APM|CONCLUSION|01"
+      }
+    },
+    {
+      "profile_id": "P06_REQUIREMENT_INTERPRETATION",
+      "paper": "SBL",
+      "description": "Repeatedly misses a sub-requirement or responds below the command verb.",
+      "current_study_context": {"topic": "Governance", "available_minutes": 35},
+      "available_question_keys": ["synthetic|SBL|SCENARIO|01", "synthetic|SBL|REQUIREMENT|02"],
+      "attempts": [
+        {
+          "analysis_id": "P06_A1",
+          "attempted_at": "2026-08-06T10:00:00Z",
+          "question_key": "hist|SBL|governance|01",
+          "topic": "Governance",
+          "question_type": "BOARD_MEMO",
+          "dimension_scores": {"REQUIREMENT_INTERPRETATION": 1},
+          "strength_tags": [],
+          "weaknesses": [{"tag": "REQUIREMENT_PARTIALLY_ANSWERED", "severity": "MAJOR", "confidence": "HIGH"}]
+        },
+        {
+          "analysis_id": "P06_A2",
+          "attempted_at": "2026-08-16T10:00:00Z",
+          "question_key": "hist|SBL|risk|02",
+          "topic": "Risk",
+          "question_type": "REPORT",
+          "dimension_scores": {"REQUIREMENT_INTERPRETATION": 2},
+          "strength_tags": [],
+          "weaknesses": [{"tag": "REQUIREMENT_PARTIALLY_ANSWERED", "severity": "MODERATE", "confidence": "HIGH"}, {"tag": "REQUIREMENT_VERB_NOT_FOLLOWED", "severity": "MODERATE", "confidence": "HIGH"}]
+        },
+        {
+          "analysis_id": "P06_A3",
+          "attempted_at": "2026-08-27T10:00:00Z",
+          "question_key": "hist|SBL|strategy|03",
+          "topic": "Strategy",
+          "question_type": "BRIEFING_NOTE",
+          "dimension_scores": {"REQUIREMENT_INTERPRETATION": 1},
+          "strength_tags": [],
+          "weaknesses": [{"tag": "REQUIREMENT_PARTIALLY_ANSWERED", "severity": "MODERATE", "confidence": "HIGH"}, {"tag": "REQUIREMENT_VERB_NOT_FOLLOWED", "severity": "MODERATE", "confidence": "MEDIUM"}]
+        }
+      ],
+      "expected": {
+        "states": {"REQUIREMENT_PARTIALLY_ANSWERED": "RECURRING", "REQUIREMENT_VERB_NOT_FOLLOWED": "EMERGING"},
+        "recommendation_mode": "TARGETED",
+        "preferred_question_key": "synthetic|SBL|REQUIREMENT|02"
+      }
+    },
+    {
+      "profile_id": "P07_BROAD_EXAM_TECHNIQUE",
+      "paper": "APM",
+      "description": "Repeated timed-attempt evidence supports broad execution weaknesses rather than a technical gap.",
+      "current_study_context": {"topic": "Performance management", "available_minutes": 60},
+      "available_question_keys": ["synthetic|APM|CONCLUSION|01", "synthetic|APM|EXECUTION|02"],
+      "attempts": [
+        {
+          "analysis_id": "P07_A1",
+          "attempted_at": "2026-08-07T10:00:00Z",
+          "question_key": "hist|APM|timed|01",
+          "topic": "Performance management",
+          "question_type": "TIMED_MULTI_REQUIREMENT",
+          "timed_attempt": true,
+          "dimension_scores": {"TECHNICAL_KNOWLEDGE": 3, "EXAM_EXECUTION": 1},
+          "strength_tags": ["TECHNICAL_KNOWLEDGE_ACCURATE"],
+          "weaknesses": [{"tag": "POOR_MARK_ALLOCATION", "severity": "MAJOR", "confidence": "HIGH"}, {"tag": "INCOMPLETE_RESPONSE", "severity": "MAJOR", "confidence": "HIGH"}, {"tag": "TIME_MANAGEMENT_CONCERN", "severity": "MAJOR", "confidence": "HIGH"}]
+        },
+        {
+          "analysis_id": "P07_A2",
+          "attempted_at": "2026-08-17T10:00:00Z",
+          "question_key": "hist|APM|timed|02",
+          "topic": "Performance evaluation",
+          "question_type": "TIMED_MULTI_REQUIREMENT",
+          "timed_attempt": true,
+          "dimension_scores": {"TECHNICAL_KNOWLEDGE": 3, "EXAM_EXECUTION": 1},
+          "strength_tags": ["TECHNICAL_KNOWLEDGE_ACCURATE"],
+          "weaknesses": [{"tag": "POOR_MARK_ALLOCATION", "severity": "MODERATE", "confidence": "HIGH"}, {"tag": "REPETITION", "severity": "MODERATE", "confidence": "HIGH"}, {"tag": "TIME_MANAGEMENT_CONCERN", "severity": "MODERATE", "confidence": "HIGH"}]
+        },
+        {
+          "analysis_id": "P07_A3",
+          "attempted_at": "2026-08-28T10:00:00Z",
+          "question_key": "hist|APM|timed|03",
+          "topic": "Strategic performance",
+          "question_type": "TIMED_MULTI_REQUIREMENT",
+          "timed_attempt": true,
+          "dimension_scores": {"TECHNICAL_KNOWLEDGE": 4, "EXAM_EXECUTION": 2},
+          "strength_tags": ["TECHNICAL_KNOWLEDGE_ACCURATE"],
+          "weaknesses": [{"tag": "POOR_MARK_ALLOCATION", "severity": "MODERATE", "confidence": "HIGH"}, {"tag": "INCOMPLETE_RESPONSE", "severity": "MODERATE", "confidence": "HIGH"}, {"tag": "TIME_MANAGEMENT_CONCERN", "severity": "MODERATE", "confidence": "HIGH"}]
+        }
+      ],
+      "expected": {
+        "states": {"POOR_MARK_ALLOCATION": "RECURRING", "TIME_MANAGEMENT_CONCERN": "RECURRING", "INCOMPLETE_RESPONSE": "EMERGING", "REPETITION": "OBSERVED"},
+        "must_preserve_strength": "TECHNICAL_KNOWLEDGE_ACCURATE",
+        "recommendation_mode": "MIXED_CHALLENGE",
+        "preferred_question_key": "synthetic|APM|EXECUTION|02"
+      }
+    },
+    {
+      "profile_id": "P08_IMPROVING_STUDENT",
+      "paper": "SBL",
+      "description": "A recurring scenario-application weakness is followed by sustained clean relevant exposures.",
+      "current_study_context": {"topic": "Change management", "available_minutes": 45},
+      "available_question_keys": ["synthetic|SBL|SCENARIO|01", "synthetic|SBL|TRANSFER|03"],
+      "attempts": [
+        {
+          "analysis_id": "P08_A1",
+          "attempted_at": "2026-07-01T10:00:00Z",
+          "question_key": "hist|SBL|application|01",
+          "topic": "Strategy",
+          "question_type": "REPORT",
+          "dimension_scores": {"SCENARIO_APPLICATION": 1},
+          "strength_tags": [],
+          "weaknesses": [{"tag": "GENERIC_NOT_SCENARIO_SPECIFIC", "severity": "MAJOR", "confidence": "HIGH"}]
+        },
+        {
+          "analysis_id": "P08_A2",
+          "attempted_at": "2026-07-10T10:00:00Z",
+          "question_key": "hist|SBL|application|02",
+          "topic": "Risk",
+          "question_type": "BRIEFING_NOTE",
+          "dimension_scores": {"SCENARIO_APPLICATION": 1},
+          "strength_tags": [],
+          "weaknesses": [{"tag": "GENERIC_NOT_SCENARIO_SPECIFIC", "severity": "MODERATE", "confidence": "HIGH"}]
+        },
+        {
+          "analysis_id": "P08_A3",
+          "attempted_at": "2026-07-20T10:00:00Z",
+          "question_key": "hist|SBL|application|03",
+          "topic": "Governance",
+          "question_type": "BOARD_MEMO",
+          "dimension_scores": {"SCENARIO_APPLICATION": 2},
+          "strength_tags": [],
+          "weaknesses": [{"tag": "GENERIC_NOT_SCENARIO_SPECIFIC", "severity": "MODERATE", "confidence": "HIGH"}]
+        },
+        {
+          "analysis_id": "P08_A4",
+          "attempted_at": "2026-08-01T10:00:00Z",
+          "question_key": "hist|SBL|application|04",
+          "topic": "Strategy",
+          "question_type": "REPORT",
+          "dimension_scores": {"SCENARIO_APPLICATION": 3},
+          "strength_tags": ["SCENARIO_APPLICATION_EFFECTIVE"],
+          "weaknesses": []
+        },
+        {
+          "analysis_id": "P08_A5",
+          "attempted_at": "2026-08-12T10:00:00Z",
+          "question_key": "hist|SBL|application|05",
+          "topic": "Risk",
+          "question_type": "BRIEFING_NOTE",
+          "dimension_scores": {"SCENARIO_APPLICATION": 3},
+          "strength_tags": ["SCENARIO_APPLICATION_EFFECTIVE"],
+          "weaknesses": []
+        },
+        {
+          "analysis_id": "P08_A6",
+          "attempted_at": "2026-08-24T10:00:00Z",
+          "question_key": "hist|SBL|application|06",
+          "topic": "Change management",
+          "question_type": "REPORT",
+          "dimension_scores": {"SCENARIO_APPLICATION": 4},
+          "strength_tags": ["SCENARIO_APPLICATION_EFFECTIVE"],
+          "weaknesses": []
+        }
+      ],
+      "expected": {
+        "states": {"GENERIC_NOT_SCENARIO_SPECIFIC": "IMPROVING"},
+        "recommendation_mode": "CONFIRM_IMPROVEMENT",
+        "preferred_question_key": "synthetic|SBL|TRANSFER|03",
+        "must_not_mark_resolved_yet": true
+      }
+    },
+    {
+      "profile_id": "P09_REGRESSING_STUDENT",
+      "paper": "AFM",
+      "description": "Quantitative interpretation was potentially resolved, then reappeared in two recent independent attempts.",
+      "current_study_context": {"topic": "Risk management", "available_minutes": 55},
+      "available_question_keys": ["synthetic|AFM|INTERPRETATION|01", "synthetic|AFM|TRANSFER|03"],
+      "attempts": [
+        {
+          "analysis_id": "P09_A1",
+          "attempted_at": "2026-06-01T10:00:00Z",
+          "question_key": "hist|AFM|interp|01",
+          "topic": "Investment appraisal",
+          "question_type": "CALCULATION_PLUS_DISCUSSION",
+          "dimension_scores": {"QUANTITATIVE_INTERPRETATION": 1},
+          "strength_tags": [],
+          "weaknesses": [{"tag": "CALCULATION_NOT_INTERPRETED", "severity": "MAJOR", "confidence": "HIGH"}]
+        },
+        {
+          "analysis_id": "P09_A2",
+          "attempted_at": "2026-06-10T10:00:00Z",
+          "question_key": "hist|AFM|interp|02",
+          "topic": "Business valuation",
+          "question_type": "CALCULATION_PLUS_DISCUSSION",
+          "dimension_scores": {"QUANTITATIVE_INTERPRETATION": 1},
+          "strength_tags": [],
+          "weaknesses": [{"tag": "CALCULATION_NOT_INTERPRETED", "severity": "MODERATE", "confidence": "HIGH"}]
+        },
+        {
+          "analysis_id": "P09_A3",
+          "attempted_at": "2026-06-20T10:00:00Z",
+          "question_key": "hist|AFM|interp|03",
+          "topic": "Risk management",
+          "question_type": "CALCULATION_PLUS_DISCUSSION",
+          "dimension_scores": {"QUANTITATIVE_INTERPRETATION": 1},
+          "strength_tags": [],
+          "weaknesses": [{"tag": "CALCULATION_NOT_INTERPRETED", "severity": "MODERATE", "confidence": "HIGH"}]
+        },
+        {
+          "analysis_id": "P09_A4",
+          "attempted_at": "2026-07-01T10:00:00Z",
+          "question_key": "hist|AFM|interp|04",
+          "topic": "Investment appraisal",
+          "question_type": "CALCULATION_PLUS_DISCUSSION",
+          "dimension_scores": {"QUANTITATIVE_INTERPRETATION": 3},
+          "strength_tags": ["QUANTITATIVE_INSIGHT_EFFECTIVE"],
+          "weaknesses": []
+        },
+        {
+          "analysis_id": "P09_A5",
+          "attempted_at": "2026-07-10T10:00:00Z",
+          "question_key": "hist|AFM|interp|05",
+          "topic": "Business valuation",
+          "question_type": "CALCULATION_PLUS_DISCUSSION",
+          "dimension_scores": {"QUANTITATIVE_INTERPRETATION": 3},
+          "strength_tags": ["QUANTITATIVE_INSIGHT_EFFECTIVE"],
+          "weaknesses": []
+        },
+        {
+          "analysis_id": "P09_A6",
+          "attempted_at": "2026-07-20T10:00:00Z",
+          "question_key": "hist|AFM|interp|06",
+          "topic": "Risk management",
+          "question_type": "CALCULATION_PLUS_DISCUSSION",
+          "dimension_scores": {"QUANTITATIVE_INTERPRETATION": 4},
+          "strength_tags": ["QUANTITATIVE_INSIGHT_EFFECTIVE"],
+          "weaknesses": []
+        },
+        {
+          "analysis_id": "P09_A7",
+          "attempted_at": "2026-07-30T10:00:00Z",
+          "question_key": "hist|AFM|interp|07",
+          "topic": "Investment appraisal",
+          "question_type": "CALCULATION_PLUS_DISCUSSION",
+          "dimension_scores": {"QUANTITATIVE_INTERPRETATION": 3},
+          "strength_tags": ["QUANTITATIVE_INSIGHT_EFFECTIVE"],
+          "weaknesses": []
+        },
+        {
+          "analysis_id": "P09_A8",
+          "attempted_at": "2026-08-10T10:00:00Z",
+          "question_key": "hist|AFM|interp|08",
+          "topic": "Risk management",
+          "question_type": "CALCULATION_PLUS_DISCUSSION",
+          "dimension_scores": {"QUANTITATIVE_INTERPRETATION": 1},
+          "strength_tags": [],
+          "weaknesses": [{"tag": "CALCULATION_NOT_INTERPRETED", "severity": "MODERATE", "confidence": "HIGH"}]
+        },
+        {
+          "analysis_id": "P09_A9",
+          "attempted_at": "2026-08-20T10:00:00Z",
+          "question_key": "hist|AFM|interp|09",
+          "topic": "Risk management",
+          "question_type": "CALCULATION_PLUS_DISCUSSION",
+          "dimension_scores": {"QUANTITATIVE_INTERPRETATION": 1},
+          "strength_tags": [],
+          "weaknesses": [{"tag": "CALCULATION_NOT_INTERPRETED", "severity": "MAJOR", "confidence": "HIGH"}]
+        }
+      ],
+      "expected": {
+        "states": {"CALCULATION_NOT_INTERPRETED": "REGRESSING"},
+        "reactivated": true,
+        "recommendation_mode": "TARGETED",
+        "preferred_question_key": "synthetic|AFM|TRANSFER|03"
+      }
+    },
+    {
+      "profile_id": "P10_ONE_ANOMALOUS_BAD_ATTEMPT",
+      "paper": "AFM",
+      "description": "One major calculation error surrounded by clean, high-confidence exposures must not become a recurring weakness.",
+      "current_study_context": {"topic": "Business valuation", "available_minutes": 25},
+      "available_question_keys": ["synthetic|AFM|CALCULATION|02", "synthetic|AFM|INTERPRETATION|01"],
+      "attempts": [
+        {
+          "analysis_id": "P10_A1",
+          "attempted_at": "2026-08-01T10:00:00Z",
+          "question_key": "hist|AFM|calc|01",
+          "topic": "Business valuation",
+          "question_type": "CALCULATION",
+          "dimension_scores": {"QUANTITATIVE_ACCURACY": 4},
+          "strength_tags": ["CALCULATION_ACCURATE"],
+          "weaknesses": []
+        },
+        {
+          "analysis_id": "P10_A2",
+          "attempted_at": "2026-08-08T10:00:00Z",
+          "question_key": "hist|AFM|calc|02",
+          "topic": "Business valuation",
+          "question_type": "CALCULATION",
+          "dimension_scores": {"QUANTITATIVE_ACCURACY": 0},
+          "strength_tags": [],
+          "weaknesses": [{"tag": "CALCULATION_ERROR", "severity": "MAJOR", "confidence": "HIGH"}]
+        },
+        {
+          "analysis_id": "P10_A3",
+          "attempted_at": "2026-08-15T10:00:00Z",
+          "question_key": "hist|AFM|calc|03",
+          "topic": "Business valuation",
+          "question_type": "CALCULATION",
+          "dimension_scores": {"QUANTITATIVE_ACCURACY": 3},
+          "strength_tags": ["CALCULATION_ACCURATE"],
+          "weaknesses": []
+        },
+        {
+          "analysis_id": "P10_A4",
+          "attempted_at": "2026-08-22T10:00:00Z",
+          "question_key": "hist|AFM|calc|04",
+          "topic": "Business valuation",
+          "question_type": "CALCULATION",
+          "dimension_scores": {"QUANTITATIVE_ACCURACY": 4},
+          "strength_tags": ["CALCULATION_ACCURATE"],
+          "weaknesses": []
+        },
+        {
+          "analysis_id": "P10_A5",
+          "attempted_at": "2026-08-29T10:00:00Z",
+          "question_key": "hist|AFM|calc|05",
+          "topic": "Business valuation",
+          "question_type": "CALCULATION",
+          "dimension_scores": {"QUANTITATIVE_ACCURACY": 3},
+          "strength_tags": ["CALCULATION_ACCURATE"],
+          "weaknesses": []
+        },
+        {
+          "analysis_id": "P10_A6",
+          "attempted_at": "2026-09-05T10:00:00Z",
+          "question_key": "hist|AFM|calc|06",
+          "topic": "Business valuation",
+          "question_type": "CALCULATION",
+          "dimension_scores": {"QUANTITATIVE_ACCURACY": 4},
+          "strength_tags": ["CALCULATION_ACCURATE"],
+          "weaknesses": []
+        }
+      ],
+      "expected": {
+        "states": {"CALCULATION_ERROR": "OBSERVED"},
+        "inactive_observation": true,
+        "must_not_be": ["EMERGING", "RECURRING"],
+        "recommendation_mode": "BASELINE",
+        "preferred_question_key": "synthetic|AFM|CALCULATION|02",
+        "reason": "Do not label the inactive anomaly as recurring; if practice is still requested, use a neutral current-topic baseline rather than a high-priority remediation claim."
+      }
+    }
+  ]
+}

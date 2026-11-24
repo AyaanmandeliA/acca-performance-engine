@@ -1,0 +1,73 @@
+{
+  "_project_link": "../../PROJECT.md",
+  "fixture_version": "vnext-synthetic-v0.2.0",
+  "notice": "All cases are fictional and were designed from architecture requirements, not the five frozen benchmark outcomes.",
+  "credit_case_specs": [
+    {"case_id": "SYN-AFM-CALC-INTERPRET", "paper": "AFM", "scenario": "CORRECT_CALCULATION_WEAK_INTERPRETATION", "expected_range": [1, 1]},
+    {"case_id": "SYN-AFM-METHOD", "paper": "AFM", "scenario": "INCORRECT_METHOD", "expected_range": [0, 0]},
+    {"case_id": "SYN-AFM-ARITH", "paper": "AFM", "scenario": "CORRECT_METHOD_ARITHMETIC_ERROR", "expected_range": [2, 2]},
+    {"case_id": "SYN-AFM-PRO-STRONG", "paper": "AFM", "scenario": "STRONG_PROFESSIONAL_SKILLS", "expected_range": [3, 3]},
+    {"case_id": "SYN-AFM-PRO-WEAK", "paper": "AFM", "scenario": "WEAK_PROFESSIONAL_SKILLS", "expected_range": [0, 0]},
+    {"case_id": "SYN-SBR-TREATMENT", "paper": "SBR", "scenario": "CORRECT_TREATMENT", "expected_range": [2, 2]},
+    {"case_id": "SYN-SBR-OFR", "paper": "SBR", "scenario": "OWN_FIGURE_CONSEQUENTIAL_CREDIT", "expected_range": [2, 2]},
+    {"case_id": "SYN-SBR-SPREADSHEET", "paper": "SBR", "scenario": "VALID_SPREADSHEET", "expected_range": [1, 1]},
+    {"case_id": "SYN-SBR-EXECUTION", "paper": "SBR", "scenario": "GENUINE_EXECUTION_PROBLEM", "expected_range": [0, 0]},
+    {"case_id": "SYN-OVERLAP", "paper": "AFM", "scenario": "OVERLAPPING_WEAKNESSES", "expected_effective_penalties": 1},
+    {"case_id": "SYN-STYLE", "paper": "SBR", "scenario": "STYLE_NOTE_NO_MARK_EFFECT", "expected_range": [1, 1]},
+    {"case_id": "SYN-LOW-CONFIDENCE", "paper": "AFM", "scenario": "LOW_CONFIDENCE_BROAD_RANGE", "expected_decision": "BROAD_RANGE"},
+    {"case_id": "SYN-ABSTAIN", "paper": "AFM", "scenario": "INSUFFICIENT_EVIDENCE", "expected_decision": "BROAD_RANGE"}
+  ],
+  "valid_diagnostic": {
+    "schema_version": "1.0.0",
+    "analysis_id": "synthetic:afm:001",
+    "benchmark_case_id": "CASE-900",
+    "generated_at": "2026-10-04T00:00:00Z",
+    "paper": "AFM",
+    "question_requirement": {
+      "question_id": "SYN-AFM-01",
+      "requirement_ids": ["a"],
+      "assessment_scope": "REQUIREMENT",
+      "mark_breakdown": [{"requirement_id": "a", "marks_available": 10}]
+    },
+    "marks_available": 10,
+    "diagnostic_model": {
+      "provider": "SYNTHETIC",
+      "model": "FIXTURE",
+      "reasoning": "DETERMINISTIC_FIXTURE",
+      "prompt_version": "synthetic-v0.2",
+      "taxonomy_version": "v0.1",
+      "paper_rules_version": "afm-rules-v0.2.0"
+    },
+    "indicative_mark": {
+      "value": 6,
+      "range": {"low": 5, "high": 7},
+      "confidence": "MEDIUM",
+      "official_mark": false,
+      "disclaimer": "Indicative AI estimate; not an official ACCA mark."
+    },
+    "diagnosis_summary": "The calculation is correct but the result is not interpreted.",
+    "dimension_assessments": [
+      {"dimension": "TECHNICAL_KNOWLEDGE", "applicability": "APPLICABLE", "score": 3, "categorical_assessment": "GOOD", "confidence": "HIGH", "evidence": [], "weakness_tags": [], "strength_tags": ["TECHNICAL_KNOWLEDGE_ACCURATE"], "rationale": "Core method is understood."},
+      {"dimension": "REQUIREMENT_INTERPRETATION", "applicability": "APPLICABLE", "score": 2, "categorical_assessment": "MIXED", "confidence": "HIGH", "evidence": [], "weakness_tags": [], "strength_tags": [], "rationale": "Discussion is incomplete."},
+      {"dimension": "SCENARIO_APPLICATION", "applicability": "APPLICABLE", "score": 3, "categorical_assessment": "GOOD", "confidence": "HIGH", "evidence": [], "weakness_tags": [], "strength_tags": ["SCENARIO_APPLICATION_EFFECTIVE"], "rationale": "Scenario figures are used."},
+      {"dimension": "ANALYSIS_DEVELOPMENT", "applicability": "APPLICABLE", "score": 2, "categorical_assessment": "MIXED", "confidence": "MEDIUM", "evidence": [], "weakness_tags": [], "strength_tags": [], "rationale": "Analysis is limited."},
+      {"dimension": "EVALUATION_JUDGEMENT", "applicability": "APPLICABLE", "score": 2, "categorical_assessment": "MIXED", "confidence": "MEDIUM", "evidence": [], "weakness_tags": [], "strength_tags": [], "rationale": "Evaluation is partial."},
+      {"dimension": "QUANTITATIVE_ACCURACY", "applicability": "APPLICABLE", "score": 4, "categorical_assessment": "STRONG", "confidence": "HIGH", "evidence": [{"answer_location": "Synthetic working", "excerpt": "Correct method and result"}], "weakness_tags": [], "strength_tags": ["CALCULATION_ACCURATE"], "rationale": "The result is accurate."},
+      {"dimension": "QUANTITATIVE_INTERPRETATION", "applicability": "APPLICABLE", "score": 1, "categorical_assessment": "WEAK", "confidence": "HIGH", "evidence": [{"answer_location": "Synthetic conclusion", "excerpt": "No interpretation supplied"}], "weakness_tags": ["CALCULATION_NOT_INTERPRETED"], "strength_tags": [], "rationale": "The number is not explained."},
+      {"dimension": "PROFESSIONAL_SKILLS", "applicability": "APPLICABLE", "score": 2, "categorical_assessment": "MIXED", "confidence": "MEDIUM", "evidence": [], "weakness_tags": [], "strength_tags": [], "rationale": "Some professional structure."},
+      {"dimension": "EXAM_EXECUTION", "applicability": "APPLICABLE", "score": 3, "categorical_assessment": "GOOD", "confidence": "HIGH", "evidence": [], "weakness_tags": [], "strength_tags": [], "rationale": "The response is complete."},
+      {"dimension": "CONCLUSION_RECOMMENDATION", "applicability": "APPLICABLE", "score": 2, "categorical_assessment": "MIXED", "confidence": "MEDIUM", "evidence": [], "weakness_tags": [], "strength_tags": [], "rationale": "The conclusion lacks numerical support."}
+    ],
+    "major_strengths": [
+      {"strength_id": "st_syn_calc", "dimension": "QUANTITATIVE_ACCURACY", "tag": "CALCULATION_ACCURATE", "confidence": "HIGH", "evidence": [{"answer_location": "Synthetic working", "excerpt": "Correct method and result"}], "explanation": "The calculation is accurate."}
+    ],
+    "major_weaknesses": [
+      {"weakness_id": "wk_syn_interpret", "dimension": "QUANTITATIVE_INTERPRETATION", "tag": "CALCULATION_NOT_INTERPRETED", "gap_class": "EXAM_TECHNIQUE", "severity": "MODERATE", "confidence": "HIGH", "evidence": [{"answer_location": "Synthetic conclusion", "excerpt": "No interpretation supplied"}], "explanation": "The correct result is not connected to the decision."}
+    ],
+    "priority_weaknesses": [{"weakness_id": "wk_syn_interpret", "priority_rank": 1, "reason": "Interpretation is required."}],
+    "technical_knowledge_gaps": [],
+    "exam_technique_gaps": [{"weakness_id": "wk_syn_interpret", "description": "Explain the result's decision effect."}],
+    "recommended_improvement_actions": [{"action_id": "act_syn_interpret", "priority": 1, "related_weakness_ids": ["wk_syn_interpret"], "action": "Add one decision implication.", "success_check": "The conclusion cites the result."}],
+    "uncertainty": {"flags": [], "details": [], "insufficient_evidence_dimensions": []}
+  }
+}

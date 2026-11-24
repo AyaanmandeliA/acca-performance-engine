@@ -1,0 +1,87 @@
+{
+  "_project_link": "../../PROJECT.md",
+  "paper": "AFM",
+  "version": "afm-rules-v0.2.0",
+  "overall_status": "UNVALIDATED",
+  "evidence_basis": [
+    "Internal v0.1 benchmark observations (source material not published)",
+    "Existing project taxonomy and Phase B evaluation"
+  ],
+  "context_defaults": {
+    "topic": "Risk management",
+    "question_type": "CALCULATION_PLUS_DISCUSSION"
+  },
+  "credit_types": [
+    "TECHNICAL",
+    "METHOD",
+    "OWN_FIGURE_FOLLOW_THROUGH",
+    "APPLICATION",
+    "QUANTITATIVE_ACCURACY",
+    "QUANTITATIVE_INTERPRETATION",
+    "ANALYSIS_EVALUATION",
+    "SCEPTICISM",
+    "COMMERCIAL_ACUMEN",
+    "COMMUNICATION"
+  ],
+  "professional_skill_components": [
+    {"component": "ANALYSIS_EVALUATION", "status": "SUPPORTED_BY_EXISTING_PROJECT_EVIDENCE"},
+    {"component": "SCEPTICISM", "status": "SUPPORTED_BY_EXISTING_PROJECT_EVIDENCE"},
+    {"component": "COMMERCIAL_ACUMEN", "status": "SUPPORTED_BY_EXISTING_PROJECT_EVIDENCE"},
+    {"component": "COMMUNICATION", "status": "INSUFFICIENT_EVIDENCE"}
+  ],
+  "accepted_presentations": [
+    {"format": "LABELLED_CALCULATION_WORKINGS", "status": "SUPPORTED_BY_EXISTING_PROJECT_EVIDENCE"},
+    {"format": "TABULAR_CALCULATION", "status": "UNVALIDATED"}
+  ],
+  "rules": [
+    {
+      "rule_id": "AFM-TECHNICAL-POINTS",
+      "category": "CREDIT",
+      "status": "SUPPORTED_BY_EXISTING_PROJECT_EVIDENCE",
+      "description": "Technical credit is recorded at the assessable point or calculation step supplied by the marking context.",
+      "effect": "ALLOW_EXPLICIT_CREDIT_UNIT"
+    },
+    {
+      "rule_id": "AFM-METHOD-FOLLOW-THROUGH",
+      "category": "FOLLOW_THROUGH",
+      "status": "UNVALIDATED",
+      "description": "Method or follow-through credit may be preserved after an arithmetic error only when the supplied marking context identifies it.",
+      "effect": "ALLOW_ONLY_WHEN_CONTEXT_EXPLICIT"
+    },
+    {
+      "rule_id": "AFM-CALCULATION-INTERPRETATION-SPLIT",
+      "category": "CREDIT",
+      "status": "SUPPORTED_BY_EXISTING_PROJECT_EVIDENCE",
+      "description": "Calculation accuracy and interpretation/evaluation are separate credit units.",
+      "effect": "SEPARATE_CREDIT_UNITS"
+    },
+    {
+      "rule_id": "AFM-PROF-ANALYSIS-EVALUATION",
+      "category": "PROFESSIONAL_SKILL",
+      "status": "SUPPORTED_BY_EXISTING_PROJECT_EVIDENCE",
+      "description": "Analysis and evaluation is recorded separately when the requirement carries this professional skill.",
+      "effect": "SEPARATE_PROFESSIONAL_COMPONENT"
+    },
+    {
+      "rule_id": "AFM-PROF-SCEPTICISM",
+      "category": "PROFESSIONAL_SKILL",
+      "status": "SUPPORTED_BY_EXISTING_PROJECT_EVIDENCE",
+      "description": "Scepticism is recorded separately and cannot be inferred from general critical language alone.",
+      "effect": "SEPARATE_PROFESSIONAL_COMPONENT"
+    },
+    {
+      "rule_id": "AFM-PROF-COMMERCIAL-ACUMEN",
+      "category": "PROFESSIONAL_SKILL",
+      "status": "SUPPORTED_BY_EXISTING_PROJECT_EVIDENCE",
+      "description": "Commercial acumen is recorded separately when practical scenario consequences support it.",
+      "effect": "SEPARATE_PROFESSIONAL_COMPONENT"
+    },
+    {
+      "rule_id": "AFM-PROF-COMMUNICATION",
+      "category": "PROFESSIONAL_SKILL",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "description": "No general AFM communication-mark rule is established by the current benchmark evidence.",
+      "effect": "ABSTAIN"
+    }
+  ]
+}

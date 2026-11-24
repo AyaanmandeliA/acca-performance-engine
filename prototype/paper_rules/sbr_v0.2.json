@@ -1,0 +1,84 @@
+{
+  "_project_link": "../../PROJECT.md",
+  "paper": "SBR",
+  "version": "sbr-rules-v0.2.0",
+  "overall_status": "UNVALIDATED",
+  "evidence_basis": [
+    "Internal v0.1 benchmark observations (source material not published)",
+    "Existing project taxonomy and Phase B evaluation"
+  ],
+  "context_defaults": {
+    "topic": "Group accounting",
+    "question_type": "CASE_ANALYSIS"
+  },
+  "credit_types": [
+    "TECHNICAL",
+    "TECHNICAL_REPORTING",
+    "METHOD",
+    "OWN_FIGURE_FOLLOW_THROUGH",
+    "CONSEQUENTIAL_TREATMENT",
+    "APPLICATION",
+    "NARRATIVE_EXPLANATION",
+    "WORKING_CALCULATION",
+    "PROFESSIONAL_SKILLS"
+  ],
+  "professional_skill_components": [
+    {"component": "PROFESSIONAL_SKILLS", "status": "INSUFFICIENT_EVIDENCE"}
+  ],
+  "accepted_presentations": [
+    {"format": "LABELLED_ADJUSTMENT_COLUMNS", "status": "SUPPORTED_BY_EXISTING_PROJECT_EVIDENCE"},
+    {"format": "LABELLED_TABULAR_WORKINGS", "status": "SUPPORTED_BY_EXISTING_PROJECT_EVIDENCE"},
+    {"format": "ALTERNATIVE_VALID_WORKING", "status": "UNVALIDATED"}
+  ],
+  "rules": [
+    {
+      "rule_id": "SBR-TECHNICAL-REPORTING-POINTS",
+      "category": "CREDIT",
+      "status": "SUPPORTED_BY_EXISTING_PROJECT_EVIDENCE",
+      "description": "Technical reporting credit is recorded by identifiable treatment, explanation or calculation point.",
+      "effect": "ALLOW_EXPLICIT_CREDIT_UNIT"
+    },
+    {
+      "rule_id": "SBR-NARRATIVE-APPLICATION",
+      "category": "CREDIT",
+      "status": "SUPPORTED_BY_EXISTING_PROJECT_EVIDENCE",
+      "description": "A narrative fact statement does not earn application credit unless connected to the scenario treatment.",
+      "effect": "SEPARATE_CREDIT_UNIT"
+    },
+    {
+      "rule_id": "SBR-OWN-FIGURE-FOLLOW-THROUGH",
+      "category": "FOLLOW_THROUGH",
+      "status": "SUPPORTED_BY_EXISTING_PROJECT_EVIDENCE",
+      "description": "Consequential own-figure credit is preserved when the method and traceable working satisfy the supplied marking context.",
+      "effect": "PRESERVE_CONSEQUENTIAL_CREDIT"
+    },
+    {
+      "rule_id": "SBR-LABELLED-SPREADSHEET",
+      "category": "PRESENTATION",
+      "status": "SUPPORTED_BY_EXISTING_PROJECT_EVIDENCE",
+      "description": "Clearly labelled adjustment columns and tabular workings are acceptable; a stylistic preference for a separate final column is not itself mark material.",
+      "effect": "ACCEPT_FORMAT"
+    },
+    {
+      "rule_id": "SBR-ALTERNATIVE-WORKINGS",
+      "category": "PRESENTATION",
+      "status": "UNVALIDATED",
+      "description": "Alternative valid workings should not be criticised solely for differing from a model layout, but broader SBR coverage is not established.",
+      "effect": "STYLE_NOTE_UNLESS_CONTEXT_REJECTS"
+    },
+    {
+      "rule_id": "SBR-CONCISE-BUT-COMPLETE",
+      "category": "PRESENTATION",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "description": "No general mark rule for concise answers is established by the current cases.",
+      "effect": "ABSTAIN"
+    },
+    {
+      "rule_id": "SBR-PROFESSIONAL-SKILLS",
+      "category": "PROFESSIONAL_SKILL",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "description": "Apply only when a supplied SBR requirement and marking context explicitly include professional-skills marks.",
+      "effect": "ALLOW_ONLY_WHEN_CONTEXT_EXPLICIT"
+    }
+  ]
+}
